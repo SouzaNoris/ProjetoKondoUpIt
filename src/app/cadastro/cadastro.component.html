@@ -1,0 +1,93 @@
+<mat-toolbar class="primary">
+    <span>CADASTROS</span>
+  </mat-toolbar>
+
+
+<form class="example-form">
+  <mat-form-field class="example-full-width">
+    <input matInput placeholder="Nome da Empresa" [(ngModel)]="model.nomeEmpresa" [formControl]="empresaFormControl" [errorStateMatcher]="matcher"
+      required>
+    <mat-error *ngIf="empresaFormControl.hasError('required')">
+      Nome da empresa não pode ficar em branco
+    </mat-error>
+  </mat-form-field>
+
+
+  <table class="example-full-width" cellspacing="0">
+    <tr>
+      <td>
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="Nome" [(ngModel)]="model.nome" [formControl]="nomeFormControl" required [errorStateMatcher]="matcher"
+          name="nome">
+          <mat-error *ngIf="emailFormControl.hasError('required')">
+            Nome não pode ficar em branco
+          </mat-error>
+        </mat-form-field>
+      </td>
+      <td>
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="Sobrenome" [(ngModel)]="model.sobrenome" name="sobrenome">
+        </mat-form-field>
+      </td>
+    </tr>
+  </table>
+
+
+  <mat-form-field class="example-full-width">
+    <input matInput placeholder="Email" [formControl]="emailFormControl" [errorStateMatcher]="matcher" [(ngModel)]="model.email">
+    <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
+      Email não pode ficar em branco
+    </mat-error>
+    <mat-error *ngIf="emailFormControl.hasError('required')">
+      Email
+      <strong>inválido!</strong>
+    </mat-error>
+  </mat-form-field>
+
+  <p>
+    <mat-form-field class="example-full-width">
+      <input matInput placeholder="Telefone" [formControl]="telefoneFormControl" [errorStateMatcher]="matcher" [(ngModel)]="model.telefone" required>
+      <mat-error *ngIf="telefoneFormControl.hasError('required')">
+        Telefone não pode ficar em branco
+      </mat-error>
+    </mat-form-field>
+  </p>
+
+
+  <table class="example-full-width" cellspacing="0">
+    <tr>
+      <td>
+        <mat-form-field class="example-full-width">
+          <input matInput type="password" placeholder="Senha" minlength="6" maxlength="10" 
+          [formControl]="senhaFormControl" [errorStateMatcher]="matcher"
+          [(ngModel)]="model.senha" name="senha" required>
+          <mat-error *ngIf="senhaFormControl.hasError('') && !senhaFormControl.hasError('required')">
+              Senha precisa ter no mínimo 6 caracteres.
+            </mat-error>
+            <mat-error *ngIf="senhaFormControl.hasError('required')">
+                Informe a Senha.
+              </mat-error>
+        </mat-form-field>
+      </td>
+      <td>
+        <mat-form-field class="example-full-width">
+          <input matInput type="password" minlength="6" maxlength="10" placeholder="Confirmação"
+          [formControl]="confirmacaoFormControl" [errorStateMatcher]="matcher"
+          [(ngModel)]="model.confirmacao" name="confirmacao" required>
+          <mat-error *ngIf="confirmacaoFormControl.hasError('min(6)') && !confirmacaoFormControl.hasError('required')">
+              Confirmação precisa ter no mínimo 6 caracteres.
+            </mat-error>
+            <mat-error *ngIf="confirmacaoFormControl.hasError('required')">
+                Informe a confirmação
+              </mat-error>
+        </mat-form-field>
+      </td>
+    </tr>
+  </table>
+
+  <div class="button-row">
+    <button mat-raised-button color="primary" (click)="salvar()">Salvar</button>
+    <button mat-raised-button color="primary" (click)="list()">Listar</button>
+  </div>
+
+</form>

@@ -1,0 +1,14 @@
+.example-form {
+    min-width: 30%;
+    max-width: 50%;
+    width: 100%;
+  }
+  
+  .example-full-width {
+    width: 100%;
+  }
+
+  .alterar {
+    background-color: #ffb940;
+  }
+ 

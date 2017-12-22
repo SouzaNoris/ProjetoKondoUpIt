@@ -1,0 +1,29 @@
+  .example-form {
+    min-width: 150px;
+    max-width: 500px;
+    width: 100%;
+  }
+  
+  .example-full-width {
+    width: 100%;
+  }
+
+.texto {
+    text-align: center;
+    top: 10%;
+}
+
+.mat-toolbar {
+    width: 60%;
+    height: 100px;
+    margin-left: 200px;
+    margin-right: 200px;
+    background-color: #3f51b5;
+}
+
+.cadastro {
+  width: 100%;
+  margin-left: 20%;
+  margin-right: 20%;
+  display: block
+}
