@@ -29,12 +29,16 @@ import { DialogCadastrosComponent } from './dialog-cadastros/dialog-cadastros.co
 
 import {MatTableModule} from '@angular/material/table';
 
+import {MatSnackBarModule} from '@angular/material/snack-bar';
+import { ApresentaMensagemComponent } from './apresenta-mensagem/apresenta-mensagem.component';
+
 @NgModule({
   declarations: [
     AppComponent,
     CadastroComponent,
     ListagemCadastrosComponent,
-    DialogCadastrosComponent
+    DialogCadastrosComponent,
+    ApresentaMensagemComponent
   ],
   imports: [
     BrowserModule,
@@ -48,12 +52,12 @@ import {MatTableModule} from '@angular/material/table';
     MatToolbarModule,
     ReactiveFormsModule,
     MatDialogModule,
-    MatTableModule
-    
+    MatTableModule,
+    MatSnackBarModule
   ],
-  providers: [{provide: ErrorStateMatcher, useClass: ShowOnDirtyErrorStateMatcher }],
+  providers: [{provide: ErrorStateMatcher, useClass: ShowOnDirtyErrorStateMatcher } ],
   bootstrap: [AppComponent],
-  entryComponents: [DialogCadastrosComponent]
+  entryComponents: [DialogCadastrosComponent, ApresentaMensagemComponent]
 })
 export class AppModule {
   
