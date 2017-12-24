@@ -3,10 +3,10 @@
   </mat-toolbar>
 
 
-<form class="example-form" [formGroup]="myForm" (ngSubmit)="onSubmit()">
+<form class="example-form" [formGroup]="myForm" novalidade>
   <mat-form-field class="example-full-width" >
-    <input matInput formControlName="empresaFormControl" placeholder="Nome da Empresa" [(ngModel)]="model.nomeEmpresa" [formControl]="empresaFormControl" [errorStateMatcher]="matcher"
-     required>
+    <input matInput formControlName="empresaFormControl" placeholder="Nome da Empresa" [(ngModel)]="model.nomeEmpresa" 
+           [formControl]="empresaFormControl" [errorStateMatcher]="matcher" required>
     <mat-error *ngIf="empresaFormControl.hasError('required')">
       Nome da empresa não pode ficar em branco
     </mat-error>
@@ -85,8 +85,9 @@
   </table>
 
   <div class="button-row">
-    <button mat-raised-button color="primary" type="submit" (click)="onSubmit()">Salvar</button>
-    <button mat-raised-button color="primary" (click)="list()">Listar</button>
+    <button mat-raised-button color="primary" type="reset" (click)="clickButtonNovo()" [disabled]="stageNovo">Novo</button>
+    <button mat-raised-button color="primary" type="submit" (click)="onSubmit()" [disabled]="stageSalvar">Salvar</button>
+    <button mat-raised-button color="primary" (click)="list()" [disabled]="listCadastros.length === 0">Listar</button>
   </div>
 
 </form>

@@ -29,8 +29,9 @@ export class CadastroComponent implements OnInit {
 
   public model: Cadastro;
   public listCadastros: Array<Cadastro>;
+  
   public myForm: FormGroup;
-
+  
   public emailFormControl: FormControl;
   public empresaFormControl: FormControl;
   public nomeFormControl: FormControl;
@@ -38,10 +39,15 @@ export class CadastroComponent implements OnInit {
   public senhaFormControl: FormControl;
   public confirmacaoFormControl: FormControl;
 
+  public stageNovo: boolean;
+  public stageSalvar: boolean;
+
   constructor(public dialog: MatDialog,
-    public snackBar: MatSnackBar) {
+              public snackBar: MatSnackBar) {
     this.model = new Cadastro();
     this.listCadastros = Array<Cadastro>();
+    this.stageNovo = true;
+    this.stageSalvar = false;
   }
 
   ngOnInit() {
@@ -99,19 +105,40 @@ export class CadastroComponent implements OnInit {
       if (this.validacaoEmail()) return;
 
       this.salvar();
-      this.myForm.reset();
+      this.enabledDisabled();
+      this.stageNovo = false;
+      this.stageSalvar = true;
     }
   }
 
   public salvar(): void {
-    // if (this.validacaoSenha()) return;
-
-    // if (this.validacaoEmail()) return;
-
     this.model.id = this.geraId();
     this.listCadastros.push(this.model);
+  }
 
-    // this.model = new Cadastro();
+  enabledDisabled() : void { 
+    let empresa = this.myForm.get('empresaFormControl');
+    let email = this.myForm.get('emailFormControl');
+    let nome = this.myForm.get('nomeFormControl');
+    let telefone = this.myForm.get('telefoneFormControl');
+    let senha = this.myForm.get('senhaFormControl');
+    let confirmacao = this.myForm.get('confirmacaoFormControl');
+    let sobrenome = this.myForm.get('sobrenome');
+
+    empresa.enabled ? empresa.disable() : empresa.enable();
+    email.enabled ? email.disable() : email.enable();
+    nome.enabled ? nome.disable() : nome.enable();
+    telefone.enabled ? telefone.disable() : telefone.enable();
+    senha.enabled ? senha.disable() : senha.enable();
+    confirmacao.enabled ? confirmacao.disable() : confirmacao.enable();
+    sobrenome.enabled ? sobrenome.disable() : sobrenome.enable();
+  }
+
+  clickButtonNovo(): void {
+    this.model = new Cadastro();
+    this.enabledDisabled();
+    this.stageNovo = true;
+    this.stageSalvar = false;
   }
 
   private geraId(): number {
